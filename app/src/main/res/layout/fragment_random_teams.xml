@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alvaro.movieparty.views.fragments.TeamTypeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Paso 1/?"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aleatorios"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/random_teams_title"
+            android:textSize="30dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de equipos"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/random_teams_title"
+            android:id="@+id/random_team_quanty"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="20dp"
+            android:hint="0"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/number_of_random_teams"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/random_teams_title"
+            android:layout_toRightOf="@+id/random_team_quanty"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/number_of_random_teams"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="Participantes:"
+            android:id="@+id/random_participants"
+            />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/random_participants"
+            android:id="@+id/random_participants_container"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/random_participants_container"
+            android:textSize="10dp"
+            android:id="@+id/participant_hint"
+            android:text="Todos los participantes separados por una '',''  "
+            />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Siguiente"
+        android:textSize="20dp"
+        android:id="@+id/random_next_button"
+        android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

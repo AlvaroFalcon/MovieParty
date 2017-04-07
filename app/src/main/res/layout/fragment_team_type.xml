@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alvaro.movieparty.views.fragments.TeamTypeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Paso 1/?"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de equipos"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/team_type_text"
+            android:textSize="30dp"
+            />
+        <Button
+            android:layout_below="@+id/team_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Formados"
+            android:ems="10"
+            android:id="@+id/formed_team_button"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Aleatorios"
+            android:ems="10"
+            android:layout_below="@+id/formed_team_button"
+            android:id="@+id/random_team_button"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

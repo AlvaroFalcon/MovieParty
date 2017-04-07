@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alvaro.movieparty.views.fragments.TeamTypeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Paso 2/?"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equipo 1"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/team_number"
+            android:textSize="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/team_number"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="Participantes:"
+            android:id="@+id/formed_participants"
+            />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/formed_participants"
+            android:id="@+id/participants_container"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/participants_container"
+            android:textSize="10dp"
+            android:text="Todos los participantes separados por una '',''  "
+            android:id="@+id/participant_hint"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:ems="9"
+            android:id="@+id/next_team_button"
+            android:layout_below="@id/participant_hint"
+            android:text="Siguiente equipo"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:ems="9"
+            android:layout_below="@+id/next_team_button"
+            android:id="@+id/ready_button"
+            android:text="¡Listo!"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
