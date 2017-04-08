@@ -8,10 +8,13 @@ import java.util.ArrayList;
 
 public class Team {
     ArrayList<String> playerList;
+    String name;
     int score;
 
-    public Team() {
+    public Team(String name) {
         this.score = 0;
+        this.name = name;
+        playerList = new ArrayList<>();
     }
 
     public ArrayList<String> getPlayerList() {
@@ -31,5 +34,15 @@ public class Team {
 
     public void setScore(int score) {
         this.score = score;
+    }
+    public void addPlayer(String player){
+        this.playerList.add(player);
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

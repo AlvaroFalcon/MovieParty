@@ -1,5 +1,8 @@
 package com.alvaro.movieparty.views;
 
+import android.content.Context;
+import android.widget.Toast;
+
 public class AppCommon {
     private static AppCommon mInstance = null;
 
@@ -15,7 +18,9 @@ public class AppCommon {
         }
         return mInstance;
     }
-
+    public void makeToast(Context context, String toastMessage) {
+        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
+    }
     public String getString() {
         return this.mString;
     }
