@@ -71,9 +71,14 @@ public class RandomTeamsFragment extends Fragment {
                     AppCommon.getInstance().makeToast(getContext(),"Debe haber al menos un jugador por cada equipo");
                 }else{
                     formTeams();
+                    saveTeamList();
                 }
             }
         });
+    }
+
+    private void saveTeamList() {
+        AppCommon.getInstance().getGame().setTeamList(teamList);
     }
 
     private void initTotalTeams() {
@@ -84,13 +89,21 @@ public class RandomTeamsFragment extends Fragment {
         initTeams();
         ArrayList<String> playersCopy = new ArrayList<>(playerList);
         Collections.shuffle(playersCopy);
-        while(!playersCopy.isEmpty()){
+        while(existPlayers(playersCopy)){
             for (int i = 0; i < teamList.size(); i++) {
                 if (playersCopy.isEmpty()) break;
-                teamList.get(i).addPlayer(playersCopy.get(0));
-                playersCopy.remove(0);
+                addPlayerToTeam(playersCopy, i);
             }
         }
+    }
+
+    private void addPlayerToTeam(ArrayList<String> playersCopy, int i) {
+        teamList.get(i).addPlayer(playersCopy.get(0));
+        playersCopy.remove(0);
+    }
+
+    private boolean existPlayers(ArrayList<String> playersCopy) {
+        return !playersCopy.isEmpty();
     }
 
     private void initTeams() {
