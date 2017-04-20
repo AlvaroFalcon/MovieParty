@@ -2,6 +2,7 @@ package com.alvaro.movieparty.views.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alvaro.movieparty.R;
+import com.alvaro.movieparty.views.AppCommon;
+import com.alvaro.movieparty.views.Team;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +28,8 @@ public class FormedTeamsFragment extends Fragment {
     private View view;
     private TextView teamNumberTextView;
     private EditText players;
+    private List<String> playerList;
+    private ArrayList<Team> teamList;
     private Button nextTeamButton, readyButton;
     private int currentTeam;
 
@@ -39,8 +48,14 @@ public class FormedTeamsFragment extends Fragment {
 
     private void init() {
         initElements();
+        playerList = new ArrayList<>();
+        teamList = new ArrayList<>();
         initActions();
         initCurrentTeam();
+    }
+
+    private void getPlayerList() {
+        playerList = fromEditToList();
     }
 
     private void initElements() {
@@ -52,7 +67,66 @@ public class FormedTeamsFragment extends Fragment {
     }
 
     private void initActions() {
+        nextTeamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPlayerList();
+                if (moreThanOnePlayer()){
+                    addTeam(playerList);
+                    refresh();
+                }else{
+                    AppCommon.getInstance().makeToast(getContext(),"Debe haber al menos un jugador por cada equipo");
+                }
+            }
+        });
+        readyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (noEnoughTeams()){
+                    AppCommon.getInstance().makeToast(getContext(),"Debe haber al menos dos equipos");
+                }else{
+                    saveTeams();
+                }
+            }
+        });
     }
+
+    private void saveTeams() {
+        AppCommon.getInstance().getGame().setTeamList(teamList);
+    }
+
+    private boolean noEnoughTeams() {
+        return teamList.size() < 2;
+    }
+
+    private boolean moreThanOnePlayer() {
+        System.out.println(playerList.toString()+ "PLAYERLIST");
+        return playerList.size() >= 1;
+    }
+
+    private void refresh() {
+        currentTeam++;
+        teamNumberTextView.setText("Equipo "+currentTeam);
+        players.setText("");
+
+    }
+
+    private void addTeam(List<String> playerList) {
+        Team team = new Team("Equipo "+currentTeam);
+        team.addAllPlayers(playerList);
+        teamList.add(team);
+    }
+
+    @NonNull
+    private List<String> fromEditToList() {
+        return Arrays.asList(removeSpaces().split(","));
+    }
+
+    @NonNull
+    private String removeSpaces() {
+        return players.getText().toString().trim();
+    }
+
 
     private void initCurrentTeam() {
         this.currentTeam = 1;

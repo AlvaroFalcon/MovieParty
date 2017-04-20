@@ -90,10 +90,14 @@ public class RandomTeamsFragment extends Fragment {
         ArrayList<String> playersCopy = new ArrayList<>(playerList);
         Collections.shuffle(playersCopy);
         while(existPlayers(playersCopy)){
-            for (int i = 0; i < teamList.size(); i++) {
-                if (playersCopy.isEmpty()) break;
-                addPlayerToTeam(playersCopy, i);
-            }
+            addPlayer(playersCopy);
+        }
+    }
+
+    private void addPlayer(ArrayList<String> playersCopy) {
+        for (int i = 0; i < teamList.size(); i++) {
+            if (playersCopy.isEmpty()) break;
+            addPlayerToTeam(playersCopy, i);
         }
     }
 

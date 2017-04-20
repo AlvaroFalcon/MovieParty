@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.alvaro.movieparty.R;
+import com.alvaro.movieparty.views.fragments.FormedTeamsFragment;
 import com.alvaro.movieparty.views.fragments.RandomTeamsFragment;
 
 public class GameActivity extends AppCompatActivity {
@@ -14,7 +15,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.game_container, new RandomTeamsFragment());
+        transaction.replace(R.id.game_container, new FormedTeamsFragment());
         transaction.commit();
     }
     @Override
