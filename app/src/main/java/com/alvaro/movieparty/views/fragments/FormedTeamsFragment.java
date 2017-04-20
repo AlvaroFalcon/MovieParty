@@ -4,6 +4,7 @@ package com.alvaro.movieparty.views.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +20,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FormedTeamsFragment extends Fragment {
 
 
     private View view;
     private TextView teamNumberTextView;
     private EditText players;
-    private List<String> playerList;
+    private ArrayList<String> playerList;
     private ArrayList<Team> teamList;
     private Button nextTeamButton, readyButton;
     private int currentTeam;
@@ -55,7 +53,7 @@ public class FormedTeamsFragment extends Fragment {
     }
 
     private void getPlayerList() {
-        playerList = fromEditToList();
+        fromEditToList();
     }
 
     private void initElements() {
@@ -70,7 +68,7 @@ public class FormedTeamsFragment extends Fragment {
         nextTeamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPlayerList();
+//                getPlayerList();
                 if (moreThanOnePlayer()){
                     addTeam(playerList);
                     refresh();
@@ -86,9 +84,16 @@ public class FormedTeamsFragment extends Fragment {
                     AppCommon.getInstance().makeToast(getContext(),"Debe haber al menos dos equipos");
                 }else{
                     saveTeams();
+                    startMoviesPerTeamFragment();
                 }
             }
         });
+    }
+
+    private void startMoviesPerTeamFragment() {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("FormedTeams");
+        transaction.replace(R.id.game_container, new MoviesPerTeamFragment());
+        transaction.commit();
     }
 
     private void saveTeams() {
@@ -100,12 +105,12 @@ public class FormedTeamsFragment extends Fragment {
     }
 
     private boolean moreThanOnePlayer() {
-        System.out.println(playerList.toString()+ "PLAYERLIST");
-        return playerList.size() >= 1;
+        return !playerList.isEmpty();
     }
 
     private void refresh() {
         currentTeam++;
+        playerList.clear();
         teamNumberTextView.setText("Equipo "+currentTeam);
         players.setText("");
 
@@ -118,8 +123,10 @@ public class FormedTeamsFragment extends Fragment {
     }
 
     @NonNull
-    private List<String> fromEditToList() {
-        return Arrays.asList(removeSpaces().split(","));
+    private void fromEditToList() {
+        if (!players.getText().toString().equals("")){
+            playerList.addAll(Arrays.asList(removeSpaces().split(",")));
+        }
     }
 
     @NonNull

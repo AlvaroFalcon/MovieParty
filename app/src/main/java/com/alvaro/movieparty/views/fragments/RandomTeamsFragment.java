@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class RandomTeamsFragment extends Fragment {
                 }else{
                     formTeams();
                     saveTeamList();
+                    startMoviesPerTeamFragment();
                 }
             }
         });
@@ -92,6 +94,11 @@ public class RandomTeamsFragment extends Fragment {
         while(existPlayers(playersCopy)){
             addPlayer(playersCopy);
         }
+    }
+    private void startMoviesPerTeamFragment() {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("RandomTeams");
+        transaction.replace(R.id.game_container, new MoviesPerTeamFragment());
+        transaction.commit();
     }
 
     private void addPlayer(ArrayList<String> playersCopy) {

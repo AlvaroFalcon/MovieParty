@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,29 @@ public class TeamTypeFragment extends Fragment {
         formedTeamButton        = (Button)      view.findViewById(R.id.formed_team_button);
     }
     private void initActions() {
+        randomTeamsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startRandomTeamsFragment();
+            }
+        });
+        formedTeamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startFormedTeamsFragment();
+            }
+        });
+    }
 
+    private void startFormedTeamsFragment() {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("TeamTypeSelection");
+        transaction.replace(R.id.game_container, new FormedTeamsFragment());
+        transaction.commit();
+    }
+
+    private void startRandomTeamsFragment() {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("TeamTypeSelection");
+        transaction.replace(R.id.game_container, new RandomTeamsFragment());
+        transaction.commit();
     }
 }
